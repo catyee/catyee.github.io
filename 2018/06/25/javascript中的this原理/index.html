@@ -79,13 +79,22 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="自然茧">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="12345678var obj = &amp;#123;    foo: function() &amp;#123;console.log(this.bar)&amp;#125;;    bar: 1&amp;#125;var foo = obj.foo;var bar = 2;obj.foo(); // 1foo();// 2 上面这段代码中，obj.foo 和foo指向的是同一个函数，但是结果却是不一样的。  我们都知道，j">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript中的this原理">
+<meta property="og:url" content="http://yoursite.com/2018/06/25/javascript中的this原理/index.html">
 <meta property="og:site_name" content="自然茧">
+<meta property="og:description" content="12345678var obj = &amp;#123;    foo: function() &amp;#123;console.log(this.bar)&amp;#125;;    bar: 1&amp;#125;var foo = obj.foo;var bar = 2;obj.foo(); // 1foo();// 2 上面这段代码中，obj.foo 和foo指向的是同一个函数，但是结果却是不一样的。  我们都知道，j">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.loli.net/2018/06/25/5b30621703c03.png">
+<meta property="og:image" content="https://i.loli.net/2018/06/25/5b30621703e5a.png">
+<meta property="og:image" content="https://i.loli.net/2018/06/25/5b30894fe4d71.png">
+<meta property="og:image" content="https://i.loli.net/2018/06/25/5b3089e7eea40.png">
+<meta property="og:updated_time" content="2018-06-25T08:59:09.685Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自然茧">
+<meta name="twitter:title" content="javascript中的this原理">
+<meta name="twitter:description" content="12345678var obj = &amp;#123;    foo: function() &amp;#123;console.log(this.bar)&amp;#125;;    bar: 1&amp;#125;var foo = obj.foo;var bar = 2;obj.foo(); // 1foo();// 2 上面这段代码中，obj.foo 和foo指向的是同一个函数，但是结果却是不一样的。  我们都知道，j">
+<meta name="twitter:image" content="https://i.loli.net/2018/06/25/5b30621703c03.png">
 
 
 
@@ -115,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/25/javascript中的this原理/"/>
 
 
 
 
 
-  <title>自然茧</title>
+  <title>javascript中的this原理 | 自然茧</title>
   
 
 
@@ -140,8 +149,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,183 +222,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/25/关于cookie，localStorage，sessionStorage/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="catyee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="自然茧">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/25/关于cookie，localStorage，sessionStorage/" itemprop="url">关于cookie，localStorage，sessionStorage</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-25T17:01:33+08:00">
-                2018-06-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>cookie<br>1.大小限制：<br><img src="../images/broswer_cookie_size.png" alt="image"></p>
-<p>不同浏览器的cookie限制<br>所以在进行页面cookie操作的时候，应该尽量保证cookie的个数小于20个，总大小小于4KB。</p>
-<p>2.主要用途：</p>
-<p>cookie是浏览器提供的功能，cookie其实就是存储在浏览器中的纯文本。</p>
-<p>当网页要发http请求时，浏览器会先检查是否有相应的cookie，有则自动添加在request header中的cookie字段中。浏览器会自动为我们完成这些，每一次都会自动帮我们做。既然存储在cookie中的数据，每次都会被浏览器自动放到http请求中，那么如果这些数据并不是每个请求都需要发给服务端，那无疑会增加网络开销。所以队员那些每次请求都要携带的信息，比如身份验证信息，就适合放在cookie中。</p>
-<ol start="3">
-<li>创建：</li>
-</ol>
-<p>web服务器通过发送一个Set-Cookie的HTTP消息头来创建一个cookie，Set-Cookie消息头是一个字符串，格式如下（中括号中的部分是可选的）：</p>
-<p>Set-Cookie：value[;expires=date][;domin=domin][;path=path][;secure]</p>
-<p>value部分是一个key=value格式的字符串，通过Set-Cookie设置的可选项（中括号中的内容）只会在浏览器端使用，而不会发送至服务端，发送至服务器的cookie值与通过Set-Cookie指定的值完全一样，不会有进一步的解析和转码操作。</p>
-<ol start="4">
-<li>属性选项</li>
-</ol>
-<p>cookie的有效时间，expires（http/1.0），max-age（http/1.1），必须是GMT格式的时间（可以通过new Date().toGMTString()或者new Date().toUTCString()来获得）。如果没有设置该选项，在浏览器关闭后cookie就会消失。</p>
-<p>expires 是 http/1.0协议中的选项，在新的http/1.1协议中expires已经由 max-age 选项代替，两者的作用都是限制cookie 的有效时间。expires的值是一个时间点（cookie失效时刻= expires），而max-age的值是一个以秒为单位时间段（cookie失效时刻= 创建时刻+ max-age）。</p>
-<p>另外，max-age 的默认值是 -1(即有效期为 session )；若max-age有三种可能值：负数、0、正数。负数：有效期session；0：删除cookie；正数：有效期为创建时刻+ max-age</p>
-<p>domin是域名，path是路径，二者构成URL，来限制cookie可以被哪些url访问，决定了cookie何时被浏览器自动添加到请求头部发出去，如果没有设置这两个选项，则会使用默认值，domain的默认值为设置该cookie的网页所在的域名，path默认值为设置该cookie的网页所在的目录。</p>
-<p>secure选项用来设置cookie只在确保安全的请求中才会发送，当请求是HTTPS协议或者其他安全协议时，包含secure选项的cookie才会被发送至服务器，需要注意的是在http协议的网页中是无法设置secure类型的cookie的</p>
-<p>httpOnly，这个选项用来设置cookie能否通过js去访问</p>
-<p>localStorage<br>localstorage是html5提出的，在此之前，IE已经有userData这种实现方式，localStorage是windows的一个对象</p>
-<p>1.基本操作</p>
-<p>set： localStorage.name = ‘test’; 或 localStorage[‘name’]=”test”或localStorage.setItem(‘name’,’test’)；</p>
-<p>get:  var name = localStorage.name; 或 var name = localStorage[‘name’];或 var name = localStorage.getItem(‘name’);</p>
-<p>localStorage还提供了key方法，来获取里面所有的key</p>
-<p>如： var storage = window.localStorage;</p>
-<pre><code>for(var i = 0; i &lt; storage.length;i++) {
-
-            var key = strorage.key(i);
-
-            var value = storage.getItem(storage.key(i))
-
-    }
-</code></pre><p>delete：localStorage.removeItem(‘name’);</p>
-<p>clearAll: localStorage.clear();</p>
-<p>相关事件：</p>
-<p>html5的本地存储，还提供了一个storage事件，可以对键值对的改变进行监听：</p>
-<pre><code>if(window.addEventListener){
-
-    window.addEventListener(&apos;storage&apos;,handle_change,false);
-
-}else if (window.attachEvent) {
-
-    window.attachEvent(&apos;onStorage&apos;,handle_change)
-
-}
-</code></pre><p>function handle_change(e) {</p>
-<pre><code>if (!e) e = window.event;
-</code></pre><p>}</p>
-<p>localStorage是持久化的本地存储，除非主动删除数据否则数据永远不会过期，受同源策略的限制</p>
-<p>应用场景：</p>
-<p>可以用来存储浏览器对该页面的访问次数，当前，如果换个浏览器这个次数就要重新开始计数了，还可以用来存储一些固定不变的页面信息，这样就不需要每次都重新加载了，这个值也可以进行覆盖</p>
-<p>sessionStorage<br>方法同localStorage</p>
-<p>用于本地存储一个会话中的数据，这些数据只有在同一个会话的页面才能访问并且当前会话结束后数据也随之销毁，因此sessionStorage不是一种持久化的本地存储，仅仅是一种会话级别的存储，只要这个浏览器窗口没有关闭，即使刷新页面或者进入同源另一页面，数据仍然存在，关闭窗口后，sessionStorage即被销毁</p>
-<p>应用场景： 页面之间的传值，从A页面跳转到B页面sessionStorage不会销毁</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -420,9 +254,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/25/javascript中的this原理/" itemprop="url">javascript中的this原理</a></h1>
+          <h1 class="post-title" itemprop="name headline">javascript中的this原理</h1>
         
 
         <div class="post-meta">
@@ -472,9 +304,7 @@
       
 
       
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">    foo: function() &#123;console.log(this.bar)&#125;;</span><br><span class="line">    bar: 1</span><br><span class="line">&#125;</span><br><span class="line">var foo = obj.foo;</span><br><span class="line">var bar = 2;</span><br><span class="line">obj.foo(); // 1</span><br><span class="line">foo();// 2</span><br></pre></td></tr></table></figure>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">    foo: function() &#123;console.log(this.bar)&#125;;</span><br><span class="line">    bar: 1</span><br><span class="line">&#125;</span><br><span class="line">var foo = obj.foo;</span><br><span class="line">var bar = 2;</span><br><span class="line">obj.foo(); // 1</span><br><span class="line">foo();// 2</span><br></pre></td></tr></table></figure>
 <p>上面这段代码中，obj.foo 和foo指向的是同一个函数，但是结果却是不一样的。 </p>
 <p>我们都知道，javascript中，this指的是函数运行时所在的环境，obj.foo()运行在obj环境,所以this指向的是obj;foo()运行在全局环境，所以this指向全局环境。但是为什么就说obj.foo()是在obj环境执行，而一旦var foo = obj.foo,foo()就变成了全局环境执行呢？也就是说函数的运行环境到底是由什么决定的。对于这个问题，我们往往是模棱两可的，下面就来解释下javascript这样处理的原理，本文主要参考了阮一峰老师的文章<a href="http://www.ruanyifeng.com/blog/2018/06/javascript-this.html" target="_blank" rel="noopener">JavaScript 的 this 原理</a>。</p>
 <h3 id="内存的数据结构"><a href="#内存的数据结构" class="headerlink" title="内存的数据结构"></a>内存的数据结构</h3><ul>
@@ -494,8 +324,6 @@
 <p>上面代码中，函数f在全局执行，this.x指向全局环境x<br><img src="https://i.loli.net/2018/06/25/5b30894fe4d71.png" alt="image"><br>在obj环境执行，this.x指向obj.x<br><img src="https://i.loli.net/2018/06/25/5b3089e7eea40.png" alt="image"></p>
 <p>回到文章开头的问题，obj.foo()是通过obj找到foo,所以就是在obj环境执行，一旦var foo = obj.foo,变量就直接指向函数本身，所以foo()就变成在全局环境执行。</p>
 
-          
-        
       
     </div>
     
@@ -512,12 +340,28 @@
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/25/关于cookie，localStorage，sessionStorage/" rel="prev" title="关于cookie，localStorage，sessionStorage">
+                关于cookie，localStorage，sessionStorage <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -527,10 +371,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -538,6 +383,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -558,8 +407,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -601,6 +459,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存的数据结构"><span class="nav-number">1.</span> <span class="nav-text">内存的数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">2.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量"><span class="nav-number">3.</span> <span class="nav-text">环境变量</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -734,6 +608,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
