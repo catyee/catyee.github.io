@@ -1063,7 +1063,7 @@ pre .javascript .function {
   right: 30px;
   z-index: 1050;
   padding: 0 6px;
-  width: 24px;
+  width: initial;
   background: #222;
   font-size: 12px;
   opacity: 1;
@@ -1822,7 +1822,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #6e4bff;
+  background: #bb4abb;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2903,4 +2903,34 @@ hr {
     width: auto;
     text-align: center;
   }
+}
+.brand {
+  background: none;
+}
+.site-meta {
+  background: none;
+}
+.site-author-image {
+  border: none;
+}
+.header {
+  background: #333;
+  background-size: cover;
+}
+.header-inner {
+  padding-top: 70px;
+}
+.site-title {
+  font-size: 32px;
+  color: #fff;
+}
+.header a {
+  color: #aaa;
+}
+.menu .menu-item a:hover {
+  color: lightPink;
+  border-bottom-color: lightPink;
+}
+.pace .pace-progress {
+  background: #ffc0cb;
 }
