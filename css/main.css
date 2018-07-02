@@ -1822,7 +1822,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #bb4abb;
+  background: #ffe4cd;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2904,6 +2904,10 @@ hr {
     text-align: center;
   }
 }
+.footer {
+  position: fixed;
+  bottom: 0;
+}
 .brand {
   background: none;
 }
@@ -2914,18 +2918,22 @@ hr {
   border: none;
 }
 .header {
-  background: #333;
+  background: rgba(255,255,255,0.6);
   background-size: cover;
+  cursor: pointer;
+}
+.header:hover {
+  background: rgba(255,255,255,0.1);
 }
 .header-inner {
   padding-top: 70px;
 }
 .site-title {
   font-size: 32px;
-  color: #fff;
+  color: #222;
 }
 .header a {
-  color: #aaa;
+  color: #222;
 }
 .menu .menu-item a:hover {
   color: lightPink;
