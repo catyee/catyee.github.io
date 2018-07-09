@@ -1,0 +1,5 @@
+<!-- 主页上文章列表中每一项的模板 -->
+<div>
+    <span><%- post.date.format("YYYY-MM-DD") %></span>
+    <a href="<%- config.root %><%- post.path %>"><%- post.title %></a>
+</div>
