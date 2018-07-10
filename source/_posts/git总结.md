@@ -1,5 +1,13 @@
 ---
 title: git总结
 date: 2018-07-10 08:58:59
-tags:
+tags: git
 ---
+### 删除远程分支
+
+    查看远程分支: git branch -r
+    删除远程分支: git branch -r -d origin/branch-name
+                 或 git push origin :branch-name
+
+git pull 和git fetch
+git rebase 和 git merge
