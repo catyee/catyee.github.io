@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="js," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="继承是OO语言中的一个最为人津津乐道的概念。许多OO语言都支持两种继承方式:接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。函数没有前面，在ECMAScript中无法实现接口继承。ECMAScript只支持实现继承，而且其实现继承主要是依靠原型链来实现的。 原型链ECMAScript中描述了原型链的概念，并将原型链作为实现继承的主要方法。其基本思想是利用原型让一个引用类型继">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript中的继承">
+<meta property="og:url" content="http://yoursite.com/2018/07/09/JavaScript中的继承/index.html">
+<meta property="og:site_name" content="catyee&#39;s blog">
+<meta property="og:description" content="继承是OO语言中的一个最为人津津乐道的概念。许多OO语言都支持两种继承方式:接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。函数没有前面，在ECMAScript中无法实现接口继承。ECMAScript只支持实现继承，而且其实现继承主要是依靠原型链来实现的。 原型链ECMAScript中描述了原型链的概念，并将原型链作为实现继承的主要方法。其基本思想是利用原型让一个引用类型继">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-10T09:17:10.448Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript中的继承">
+<meta name="twitter:description" content="继承是OO语言中的一个最为人津津乐道的概念。许多OO语言都支持两种继承方式:接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。函数没有前面，在ECMAScript中无法实现接口继承。ECMAScript只支持实现继承，而且其实现继承主要是依靠原型链来实现的。 原型链ECMAScript中描述了原型链的概念，并将原型链作为实现继承的主要方法。其基本思想是利用原型让一个引用类型继">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/09/JavaScript中的继承/"/>
+
+
+
+
+
+  <title>JavaScript中的继承 | catyee's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+  <div class="wrap">
+    <div class="container sidebar-position-left page-post-detail">
+      <div class="headband"></div>
+
+      <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-wrapper">
+    <div class="site-meta ">
+    
+
+   <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">catyee's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+ </div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="main-inner">
+          <div class="content-wrap">
+            <div id="content" class="content">
+              
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/09/JavaScript中的继承/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="catyee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="catyee's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript中的继承</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-09T10:19:31+08:00">
+                2018-07-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>继承是OO语言中的一个最为人津津乐道的概念。许多OO语言都支持两种继承方式:接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。函数没有前面，在ECMAScript中无法实现接口继承。ECMAScript只支持实现继承，而且其实现继承主要是依靠原型链来实现的。</p>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>ECMAScript中描述了原型链的概念，并将原型链作为实现继承的主要方法。其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。简单回顾一下构造函数、原型和实例的关系: 每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。那么，假如我们让原型对象等于另一个类型的实例，那么结果会怎么样呢？显然，此时的原型对象将包含一个指向另一个原型的指针（<strong>proto</strong>）,相应地，另一个原型中也包含着一个指向另一个构造函数的指针(constructor)。假设另一个原型又是另一个类型的实例，那么上述关系依然成立，如此层层递进，就构成了实例与原型的链条。这就是原型链的基本改变。</p>
+<p>实现原型链有一种基本模式，其代码大致如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function SuperType() &#123;</span><br><span class="line">    this.property = true;</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.getSuperValue = function() &#123;</span><br><span class="line">    return this.property;</span><br><span class="line">&#125;</span><br><span class="line">function SubType() &#123;</span><br><span class="line">    this.subproperty = false;</span><br><span class="line">&#125;</span><br><span class="line">// 继承了SuperType</span><br><span class="line">SubType.prototype = new SuperType();</span><br><span class="line">SubType.prototype.getSubValue = function() &#123;</span><br><span class="line">    return this.subproperty;</span><br><span class="line">&#125;</span><br><span class="line">var instance = new SubType();</span><br><span class="line">alert(instance.getSuperValue()); // true</span><br><span class="line"></span><br><span class="line">实现了Subtype继承SuperType，实现的本质就是重写了原型对象，代之以一个新类型的实例</span><br><span class="line"></span><br><span class="line">调用instance.getSuperValue()会经历三个搜索步骤: 1) 搜索实例 2) 搜索SubType.prototype 3) 搜索SuperType.prototype,最后一步才会找到该方法。在找不到属性或方法的情况下，搜索过程总是要一环一环地前行到原型链末端才会停下来。</span><br></pre></td></tr></table></figure></p>
+<h3 id="不要忘记默认的原型"><a href="#不要忘记默认的原型" class="headerlink" title="不要忘记默认的原型"></a>不要忘记默认的原型</h3><p> 事实上，前面的例子中展示的原型链还少一环。我们知道，所有的引用类型默认都继承了Object，而这个继承也是通过原型链实现的。<strong>所有函数的默认原型都是Object的实例，因此默认原型都会包含一个内部指针指向Object.prototype,这也正是所有自定义类型都会继承toString(),valueOf()等默认方法的根本原因</strong></p>
+<h3 id="确定原型和实例的关系"><a href="#确定原型和实例的关系" class="headerlink" title="确定原型和实例的关系"></a>确定原型和实例的关系</h3><p> 可以通过两种方式来确定原型和实例之间的关系。第一种方式是使用instanceof操作符，只要用这个操作符来测试实例与原型链中出现过的构造函数，结果就会返回true。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alert(instance instanceof Object); // true</span><br><span class="line">alert(instance instanceof SuperType); // true</span><br><span class="line">alert(instance instanceof SubType); // true</span><br></pre></td></tr></table></figure></p>
+<p> 由于原型链的关系，我们可以说instance是Object、SuperType或SubType中任何一个类型的实例。因此，测试这三个构造函数的结果都返回了true。</p>
+<p> 第二种方式是使用isPrototypeOf()方法。同样，只要是原型链中出现过的原型，都可以说是该原型链所派生的实例的原型，因此isPrototypeOf()方法也会返回true<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alert(Object.prototype.isPrototypeOf(instance)); // true</span><br><span class="line">alert(SuperType.prototype.isPrototypeOf(instance)); // true</span><br><span class="line">alert(subType.prototype.isPrototypeOf(instance)); // true</span><br></pre></td></tr></table></figure></p>
+<h3 id="谨慎地定义方法"><a href="#谨慎地定义方法" class="headerlink" title="谨慎地定义方法"></a>谨慎地定义方法</h3><p> 子类型有时候需要重写超类型中的某个方法，或者需要添加超类型中不存在的某个方法。但不管怎样，<strong>给原型添加方法的代码一定要放在替换原型的语句之后</strong><br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function SuperType() &#123;</span><br><span class="line">    this.property = true;</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.getSuperValue = function() &#123;</span><br><span class="line">    return this.property;</span><br><span class="line">&#125;</span><br><span class="line">function SubType() &#123;</span><br><span class="line">    this.subproperty = false;</span><br><span class="line">&#125;</span><br><span class="line">// 继承了SuperType</span><br><span class="line">SubType.prototype = new SuperType();</span><br><span class="line">// 添加新方法</span><br><span class="line">SubType.prototype.getSubValue = function() &#123;</span><br><span class="line">    return this.subproperty;</span><br><span class="line">&#125;</span><br><span class="line">// 重写超类型中的方法</span><br><span class="line">SubType.prototype.getSuperValue = function() &#123;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br><span class="line">var instance = new SubType();</span><br><span class="line">alert(instance.getSuperValue()); // false</span><br></pre></td></tr></table></figure></p>
+<p> 在以上代码中，添加了一个方法getSubValue(),重写了原型链中已经存在的方法getSubValue(),但重写这个方法将会屏蔽原来的那个方法，即当通过SubType的实例调用getSuperValue()时，调用的就是这个重新定义的方法;但通过SuperType的实例调用getSuperValue()时，还会继续调用原来的那个方法。这里需要格外注意的是，必须在用SuperValue的实例替换原型后，再定义这两个方法。<br> 还有一点要注意的是 <strong>在通过原型链实现继承时，不能使用对象字面量创建原型方法，因为这样会重写原型链</strong><br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function SuperType() &#123;</span><br><span class="line">    this.property = true;</span><br><span class="line">&#125;</span><br><span class="line">SuperType.property.getSuperValue = function() &#123;</span><br><span class="line">    return this.property;</span><br><span class="line">&#125;</span><br><span class="line">function SubType() &#123;</span><br><span class="line">    this.subProperty = false;</span><br><span class="line">&#125;</span><br><span class="line">// 继承了SuperType</span><br><span class="line">SubType.protoType = new SuperType();</span><br><span class="line">// 使用字面量添加新方法，会导致上一行代码无效</span><br><span class="line">SubType.prototype = &#123;</span><br><span class="line">    getSubValue: function() &#123;</span><br><span class="line">        return this.subproperty;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line">var instance = new SubType();</span><br><span class="line">alert(instance.getSuperValue()); // error</span><br></pre></td></tr></table></figure></p>
+<h3 id="原型链的问题"><a href="#原型链的问题" class="headerlink" title="原型链的问题"></a>原型链的问题</h3><p> 原型链虽然很强大，可以用它来实现继承，但它也存在一些问题，其中最主要的问题来自 <strong>包含引用类型值的原型</strong> 。之前介绍过，在用原型模式创建对象时，原型中的所有属性是被所有实例共享的，如果原型中包含的属性是引用类型的值，在实例中修改这个属性会影响其他的实例。所以我们不再原型对象中定义属性，而是在构造函数中定义。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function SuperType() &#123;</span><br><span class="line">    this.colors = [&apos;red&apos;, &apos;blue&apos;, &apos;green&apos;];</span><br><span class="line">&#125;</span><br><span class="line">function SubType() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">// 继承了SuperType</span><br><span class="line">SubType.prototype = new SuperType();</span><br><span class="line">var instance1 = new SubType();</span><br><span class="line">instance1.colors.push(&apos;black&apos;);</span><br><span class="line">alert(instance1.colors); // [&apos;red&apos;, &apos;blue&apos;, &apos;green&apos;,&apos;black&apos;]</span><br><span class="line"></span><br><span class="line">var instance2 = new SubType();</span><br><span class="line">alert(instance2.colors); // [&apos;red&apos;, &apos;blue&apos;, &apos;green&apos;,&apos;black&apos;]</span><br><span class="line"></span><br><span class="line">var instance3 = new SuperType();</span><br><span class="line">alert(instance3.colors); // [&apos;red&apos;, &apos;blue&apos;, &apos;green&apos;]</span><br></pre></td></tr></table></figure></p>
+<p> 这个例子中SuperType构造函数定义的color属性是定义在构造函数中的，所以它的每个实例都会有各自包含自己数组的colors属性，不会相互影响。但是当SubType通过原型链继承了SuperType之后，SubType.prototype就变成了SuperType的一个实例，因此它也拥有了一个自己的colors属性————相当于创建了一个SubType.prototype.colors属性一样。所以SubType的所有实例都会共享这个一个colors属性。</p>
+<p> 原型链的第二个问题是在创建子类型的实例时，不能向超类型的构造函数中传递参数。实际上应该说是没办法在不影响所有对象实例的情况下，给超类型的构造函数传递参数，因此实践中很少会单独使用原型链。</p>
+<h2 id="借用构造函数"><a href="#借用构造函数" class="headerlink" title="借用构造函数"></a>借用构造函数</h2><p> 在解决原型中包含引用类型值所带来的问题的过程中，开发人员开始使用一种叫做借用构造函数的技术（有时候也叫做伪构造对象或经典继承）。这种技术的基本思想相当简单，即子类型构造函数的内部调用超类型构造函数，别忘了，函数只不过是在特定环境中执行代码的对象，因此通过apply()和call()方法可以在（将来）新创建的对象上执行构造函数。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/09/css3 transitions，transforms和annimation的总结/" rel="next" title="css3 transitions，transforms和annimation的总结">
+                <i class="fa fa-chevron-left"></i> css3 transitions，transforms和annimation的总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+            </div>
+            
+
+
+            
+
+  
+
+
+
+          </div>
+          
+            
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="catyee" />
+            
+              <p class="site-author-name" itemprop="name">catyee</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原型链"><span class="nav-number">1.</span> <span class="nav-text">原型链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#不要忘记默认的原型"><span class="nav-number">1.1.</span> <span class="nav-text">不要忘记默认的原型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#确定原型和实例的关系"><span class="nav-number">1.2.</span> <span class="nav-text">确定原型和实例的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谨慎地定义方法"><span class="nav-number">1.3.</span> <span class="nav-text">谨慎地定义方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型链的问题"><span class="nav-number">1.4.</span> <span class="nav-text">原型链的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#借用构造函数"><span class="nav-number">2.</span> <span class="nav-text">借用构造函数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+          
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+        <div class="footer-inner">
+          <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">catyee</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+          
+
+
+
+
+
+
+
+          
+        </div>
+      </footer>
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+      
+
+    </div>
+
+    
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+    
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+    
+    
+
+    
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+    
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+    
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+      <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+    
+    <a href="https://github.com/catyee"><img style="position: absolute; top: 0; left: 0; border: 0;" src="/images/forkme_left_white_ffffff.png" alt="Fork me on GitHub"></a>
+</div>
+</body>
+</html>
