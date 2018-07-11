@@ -1,7 +1,8 @@
 ---
 title: javascript中的this原理
 date: 2018-06-25 16:58:51
-tags: 'js'
+tags: JavaScript
+categories: JavaScript
 ---
 ```
     var obj = {

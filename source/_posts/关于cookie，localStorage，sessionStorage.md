@@ -1,13 +1,14 @@
 ---
 title: 关于cookie，localStorage，sessionStorage
 date: 2018-06-25 17:01:33
-tags: 'js'
+tags: JavaScript
+categories: JavaScript
 ---
 cookie
 1.大小限制：
 ![image](/images/broswer_cookie_size.png)
 
-不同浏览器的cookie限制
+<center>不同浏览器的cookie限制</center>
 所以在进行页面cookie操作的时候，应该尽量保证cookie的个数小于20个，总大小小于4KB。
 
 2.主要用途：

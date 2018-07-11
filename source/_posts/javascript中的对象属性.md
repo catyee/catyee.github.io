@@ -1,7 +1,8 @@
 ---
 title: javscript中的对象属性
 date: 2018-06-25 16:58:51
-tags: 'js'
+tags: JavaScript
+categories: JavaScript
 ---
 
 ### 属性类型
