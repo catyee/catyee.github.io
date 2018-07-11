@@ -2,7 +2,7 @@
 
 1. es6相关知识点  es7 es8
     - let和var
-        - 所声明的变量只在let命令所在的代码块有效 {let a = 10; var b = 1;} a // ReferenceError: a is not defined. b // 1
+        - 所声明的变量只在let命令所在的代码块有效 {let a = 10; var b = 1;} 
         - var a = 2; 首先声明一个变量a，然后初始化a为undefined，然后a赋值为2
         - let a = 2;  声明 不进行初始化
         - let适合for循环的计数器
@@ -43,7 +43,7 @@
             - GET参数通过URL传递，POST放在Request body中。
 
     - 请求头
-        - headers: {'Content-Type': 'application/json'}
+        - headers:{'Content-Type': 'application/json'}
     - 如何跨域
         - jsonp跨域 script标签允许跨域请求  只允许GET
         - CORS跨域 后端设置header Access-Control-Allow-Origin
