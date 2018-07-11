@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="to do something" />
+  <meta name="keywords" content="JavaScript," />
 
 
 
@@ -86,17 +86,21 @@
 
 
 
-<meta name="description" content="photophotophoto">
-<meta property="og:type" content="website">
-<meta property="og:title" content="photo">
-<meta property="og:url" content="http://yoursite.com/photo/index.html">
+<meta name="description" content="事件冒泡JavaScript与HTML之间的交互是通过事件实现的。首先先明确事件流的概念，事件流描述的是从页面中接收事件的顺序。IE的事件流叫做事件冒泡，即事件开始时由最具体的元素(文档中嵌套最深的那个节点)接收，然后逐级向上传播到较为不具体的节点(文档)。如图: 图片取自JavaScript高级程序设计第三版 事件捕获Netscape Communicator团队提出的另一种事件流叫做事件捕获。">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript中的事件">
+<meta property="og:url" content="http://yoursite.com/2018/07/11/JavaScript中的事件/index.html">
 <meta property="og:site_name" content="自然茧">
-<meta property="og:description" content="photophotophoto">
+<meta property="og:description" content="事件冒泡JavaScript与HTML之间的交互是通过事件实现的。首先先明确事件流的概念，事件流描述的是从页面中接收事件的顺序。IE的事件流叫做事件冒泡，即事件开始时由最具体的元素(文档中嵌套最深的那个节点)接收，然后逐级向上传播到较为不具体的节点(文档)。如图: 图片取自JavaScript高级程序设计第三版 事件捕获Netscape Communicator团队提出的另一种事件流叫做事件捕获。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-26T03:10:29.585Z">
+<meta property="og:image" content="http://yoursite.com/images/event_bubble.png">
+<meta property="og:image" content="http://yoursite.com/images/event_capture.png">
+<meta property="og:updated_time" content="2018-07-11T08:56:30.724Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="photo">
-<meta name="twitter:description" content="photophotophoto">
+<meta name="twitter:title" content="JavaScript中的事件">
+<meta name="twitter:description" content="事件冒泡JavaScript与HTML之间的交互是通过事件实现的。首先先明确事件流的概念，事件流描述的是从页面中接收事件的顺序。IE的事件流叫做事件冒泡，即事件开始时由最具体的元素(文档中嵌套最深的那个节点)接收，然后逐级向上传播到较为不具体的节点(文档)。如图: 图片取自JavaScript高级程序设计第三版 事件捕获Netscape Communicator团队提出的另一种事件流叫做事件捕获。">
+<meta name="twitter:image" content="http://yoursite.com/images/event_bubble.png">
 
 
 
@@ -126,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/photo/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/11/JavaScript中的事件/"/>
 
 
 
 
 
-  <title>photo | 自然茧</title>
+  <title>JavaScript中的事件 | 自然茧</title>
   
 
 
@@ -246,34 +250,200 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/11/JavaScript中的事件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="catyee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="自然茧">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">photo</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <p>photophotophoto</p>
-
+          <h1 class="post-title" itemprop="name headline">JavaScript中的事件</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-11T15:59:59+08:00">
+                2018-07-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  223 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h6 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h6><p>JavaScript与HTML之间的交互是通过事件实现的。<br>首先先明确事件流的概念，事件流描述的是从页面中接收事件的顺序。IE的事件流叫做事件冒泡，即事件开始时由最具体的元素(文档中嵌套最深的那个节点)接收，然后逐级向上传播到较为不具体的节点(文档)。如图:<img src="/images/event_bubble.png" alt="image"> <center>图片取自JavaScript高级程序设计第三版</center></p>
+<h6 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h6><p>Netscape Communicator团队提出的另一种事件流叫做事件捕获。事件捕获的思想是不太具体的节点应该更早接收到事件，而最具体的节点应该最后接收到事件，事件捕获的用意在于在事件到达预定目标之前捕获它。如图: <img src="/images/event_capture.png" alt="image"> <center>图片取自JavaScript高级程序设计第三版</center></p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/10/git总结/" rel="next" title="git总结">
+                <i class="fa fa-chevron-left"></i> git总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -306,8 +476,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -381,6 +560,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#事件冒泡"><span class="nav-number">1.</span> <span class="nav-text">事件冒泡</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#事件捕获"><span class="nav-number">2.</span> <span class="nav-text">事件捕获</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
