@@ -2,7 +2,7 @@
 title: 关于cookie，localStorage，sessionStorage
 date: 2018-06-25 17:01:33
 tags: JavaScript
-categories: JavaScript
+categories: 总结(JavaScript)
 ---
 cookie
 1.大小限制：

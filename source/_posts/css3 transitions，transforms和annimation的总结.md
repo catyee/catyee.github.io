@@ -3,7 +3,7 @@ title: css3 transitions，transforms和annimation的总结
 date: 2018-07-09 08:47:43
 tags: css
 description: 在写css3时经常会混淆transitions，transforms和annimation这三个属性，所以还是很有必要总结一下的(●'◡'●)
-categories: css
+categories: 总结(css)
 ---
 css3 transitions，transforms和annimation的总结
 transition

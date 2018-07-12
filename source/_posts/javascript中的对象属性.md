@@ -2,7 +2,7 @@
 title: javscript中的对象属性
 date: 2018-06-25 16:58:51
 tags: JavaScript
-categories: JavaScript
+categories: 前端学习笔记(JavaScript)
 ---
 
 ### 属性类型

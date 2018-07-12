@@ -2,7 +2,7 @@
 title: JavaScript中的继承
 date: 2018-07-09 10:19:31
 tags: JavaScript
-categories: JavaScript
+categories: 前端学习笔记(JavaScript)
 ---
 
 继承是OO语言中的一个最为人津津乐道的概念。许多OO语言都支持两种继承方式:接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。函数没有前面，在ECMAScript中无法实现接口继承。ECMAScript只支持实现继承，而且其实现继承主要是依靠原型链来实现的。

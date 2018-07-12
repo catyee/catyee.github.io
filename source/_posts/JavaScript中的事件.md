@@ -2,7 +2,7 @@
 title: JavaScript中的事件
 date: 2018-07-11 15:59:59
 tags: JavaScript
-categories: JavaScript
+categories: 前端学习笔记(JavaScript)
 ---
 ###### 事件冒泡
 JavaScript与HTML之间的交互是通过事件实现的。

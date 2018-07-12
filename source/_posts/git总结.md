@@ -2,7 +2,7 @@
 title: git总结
 date: 2018-07-10 08:58:59
 tags: git
-categories: git
+categories: 总结(git)
 ---
 ### 删除远程分支
 
