@@ -39,3 +39,49 @@ Point类除了构造方法，还定义了一个toString方法，注意:定义类
     typeof Point; // "function"
     Point == Point.prototype.constructor; // true
 ```
+上面的代码表明，类的数据类型就是函数，类本身指向构造函数。
+使用的时候，也是直接对类使用new命令。
+**需要注意的是类的内部定义的方法，都是不可枚举的。这一点ES5的行为不一致。**
+##### 严格模式
+类和模块的内部，默认就是严格模式，所以不需要use strict指定运行模式。只要你的代码写在类或模块之中，就只有严格模式可用。
+##### constructor方法
+constructor方法是类的默认方法，通过new命令生成对象实例时，自动调用该方法。一个类必须有constructor方法，如果没有显示定义，一个空的constructor方法就会被默认添加。
+constructor方法默认返回实例对象(即this)，完全可以指定返回另一个对象。
+```
+    class Foo {
+        constructor() {
+            return Object.create(null);
+        }
+    }
+    new Foo() instanceof Foo(); // false
+```
+##### 类的实例对象
+生成类的实例对象的写法，与ES5完全一样，也是使用new命令，如果忘记加上new命令，像函数那样调用Class，将会报错。
+与ES5一样，所有的实例共享一个原型对象。
+##### Class表达式
+与函数一样，类也可以使用表达式的形式定义。
+```
+    const Myclass = class Me {
+        getClassName() {
+            return Me.name;
+        }
+    }
+```
+注意: 上面代码中类的名字是Myclass而不是Me，Me只在class的内部代码可用，指代当前类。
+
+##### 不存在变量提升
+类不存在变量提升，这一点与ES5完全不同。
+```
+    new Foo(); // error
+    class Foo{}
+```
+上面代码中，Foo类使用在前，定义在后，这样会报错，因为ES6不会把类的声明提升到代码头部。这种规定的原因与下文要提到的继承有关，必须保证子类在父类之后定义。
+
+```
+    let Foo = class {}；
+    class Bar extend Foo {
+
+    }
+```
+上面的代码不会报错，因为Bar继承Foo的时候，Foo已经有了定义了，但是，如果存在class的提升，则会报错，因为class会被提升到代码头部，而let命令是不提升的，所以导致Bar继承Foo的时候，Foo还没有定义。
+
