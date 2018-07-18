@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="JavaScript," />
+  <meta name="keywords" content="ES6," />
 
 
 
@@ -86,20 +86,18 @@
 
 
 
-<meta name="description" content="cookie1.大小限制： 不同浏览器的cookie限制所以在进行页面cookie操作的时候，应该尽量保证cookie的个数小于20个，总大小小于4KB。 2.主要用途： cookie是浏览器提供的功能，cookie其实就是存储在浏览器中的纯文本。 当网页要发http请求时，浏览器会先检查是否有相应的cookie，有则自动添加在request header中的cookie字段中。浏览器会自动为我们">
-<meta name="keywords" content="JavaScript">
+<meta name="description" content="Iterator(遍历器)的概念">
+<meta name="keywords" content="ES6">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于cookie，localStorage，sessionStorage">
-<meta property="og:url" content="http://yoursite.com/2018/06/25/关于cookie，localStorage，sessionStorage/index.html">
+<meta property="og:title" content="Iterator和for...of循环">
+<meta property="og:url" content="http://yoursite.com/2018/07/13/Iterator和for-of循环/index.html">
 <meta property="og:site_name" content="自然茧">
-<meta property="og:description" content="cookie1.大小限制： 不同浏览器的cookie限制所以在进行页面cookie操作的时候，应该尽量保证cookie的个数小于20个，总大小小于4KB。 2.主要用途： cookie是浏览器提供的功能，cookie其实就是存储在浏览器中的纯文本。 当网页要发http请求时，浏览器会先检查是否有相应的cookie，有则自动添加在request header中的cookie字段中。浏览器会自动为我们">
+<meta property="og:description" content="Iterator(遍历器)的概念">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/images/broswer_cookie_size.png">
-<meta property="og:updated_time" content="2018-07-12T07:25:10.507Z">
+<meta property="og:updated_time" content="2018-07-13T08:00:08.271Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于cookie，localStorage，sessionStorage">
-<meta name="twitter:description" content="cookie1.大小限制： 不同浏览器的cookie限制所以在进行页面cookie操作的时候，应该尽量保证cookie的个数小于20个，总大小小于4KB。 2.主要用途： cookie是浏览器提供的功能，cookie其实就是存储在浏览器中的纯文本。 当网页要发http请求时，浏览器会先检查是否有相应的cookie，有则自动添加在request header中的cookie字段中。浏览器会自动为我们">
-<meta name="twitter:image" content="http://yoursite.com/images/broswer_cookie_size.png">
+<meta name="twitter:title" content="Iterator和for...of循环">
+<meta name="twitter:description" content="Iterator(遍历器)的概念">
 
 
 
@@ -129,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/25/关于cookie，localStorage，sessionStorage/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/13/Iterator和for-of循环/"/>
 
 
 
 
 
-  <title>关于cookie，localStorage，sessionStorage | 自然茧</title>
+  <title>Iterator和for...of循环 | 自然茧</title>
   
 
 
@@ -261,7 +259,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/25/关于cookie，localStorage，sessionStorage/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/Iterator和for-of循环/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="catyee">
@@ -278,7 +276,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">关于cookie，localStorage，sessionStorage</h1>
+          <h1 class="post-title" itemprop="name headline">Iterator和for...of循环</h1>
         
 
         <div class="post-meta">
@@ -290,8 +288,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-25T17:01:33+08:00">
-                2018-06-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-13T15:56:30+08:00">
+                2018-07-13
               </time>
             
 
@@ -313,8 +311,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/总结-JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">总结(JavaScript)</span>
+                  <a href="/categories/前端学习笔记-ES6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端学习笔记(ES6)</span>
                   </a>
                 </span>
 
@@ -346,7 +344,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,201 字
+                  7 字
                 </span>
               
 
@@ -362,7 +360,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5 分钟
+                  1 分钟
                 </span>
               
             </div>
@@ -383,62 +381,7 @@
       
 
       
-        <p>cookie<br>1.大小限制：<br><img src="/images/broswer_cookie_size.png" alt="image"></p>
-<p><center>不同浏览器的cookie限制</center><br>所以在进行页面cookie操作的时候，应该尽量保证cookie的个数小于20个，总大小小于4KB。</p>
-<p>2.主要用途：</p>
-<p>cookie是浏览器提供的功能，cookie其实就是存储在浏览器中的纯文本。</p>
-<p>当网页要发http请求时，浏览器会先检查是否有相应的cookie，有则自动添加在request header中的cookie字段中。浏览器会自动为我们完成这些，每一次都会自动帮我们做。既然存储在cookie中的数据，每次都会被浏览器自动放到http请求中，那么如果这些数据并不是每个请求都需要发给服务端，那无疑会增加网络开销。所以队员那些每次请求都要携带的信息，比如身份验证信息，就适合放在cookie中。</p>
-<ol start="3">
-<li>创建：</li>
-</ol>
-<p>web服务器通过发送一个Set-Cookie的HTTP消息头来创建一个cookie，Set-Cookie消息头是一个字符串，格式如下（中括号中的部分是可选的）：</p>
-<p>Set-Cookie：value[;expires=date][;domin=domin][;path=path][;secure]</p>
-<p>value部分是一个key=value格式的字符串，通过Set-Cookie设置的可选项（中括号中的内容）只会在浏览器端使用，而不会发送至服务端，发送至服务器的cookie值与通过Set-Cookie指定的值完全一样，不会有进一步的解析和转码操作。</p>
-<ol start="4">
-<li>属性选项</li>
-</ol>
-<p>cookie的有效时间，expires（http/1.0），max-age（http/1.1），必须是GMT格式的时间（可以通过new Date().toGMTString()或者new Date().toUTCString()来获得）。如果没有设置该选项，在浏览器关闭后cookie就会消失。</p>
-<p>expires 是 http/1.0协议中的选项，在新的http/1.1协议中expires已经由 max-age 选项代替，两者的作用都是限制cookie 的有效时间。expires的值是一个时间点（cookie失效时刻= expires），而max-age的值是一个以秒为单位时间段（cookie失效时刻= 创建时刻+ max-age）。</p>
-<p>另外，max-age 的默认值是 -1(即有效期为 session )；若max-age有三种可能值：负数、0、正数。负数：有效期session；0：删除cookie；正数：有效期为创建时刻+ max-age</p>
-<p>domin是域名，path是路径，二者构成URL，来限制cookie可以被哪些url访问，决定了cookie何时被浏览器自动添加到请求头部发出去，如果没有设置这两个选项，则会使用默认值，domain的默认值为设置该cookie的网页所在的域名，path默认值为设置该cookie的网页所在的目录。</p>
-<p>secure选项用来设置cookie只在确保安全的请求中才会发送，当请求是HTTPS协议或者其他安全协议时，包含secure选项的cookie才会被发送至服务器，需要注意的是在http协议的网页中是无法设置secure类型的cookie的</p>
-<p>httpOnly，这个选项用来设置cookie能否通过js去访问</p>
-<p>localStorage<br>localstorage是html5提出的，在此之前，IE已经有userData这种实现方式，localStorage是windows的一个对象</p>
-<p>1.基本操作</p>
-<p>set： localStorage.name = ‘test’; 或 localStorage[‘name’]=”test”或localStorage.setItem(‘name’,’test’)；</p>
-<p>get:  var name = localStorage.name; 或 var name = localStorage[‘name’];或 var name = localStorage.getItem(‘name’);</p>
-<p>localStorage还提供了key方法，来获取里面所有的key</p>
-<p>如： var storage = window.localStorage;</p>
-<pre><code>for(var i = 0; i &lt; storage.length;i++) {
-
-            var key = strorage.key(i);
-
-            var value = storage.getItem(storage.key(i))
-
-    }
-</code></pre><p>delete：localStorage.removeItem(‘name’);</p>
-<p>clearAll: localStorage.clear();</p>
-<p>相关事件：</p>
-<p>html5的本地存储，还提供了一个storage事件，可以对键值对的改变进行监听：</p>
-<pre><code>if(window.addEventListener){
-
-    window.addEventListener(&apos;storage&apos;,handle_change,false);
-
-}else if (window.attachEvent) {
-
-    window.attachEvent(&apos;onStorage&apos;,handle_change)
-
-}
-</code></pre><p>function handle_change(e) {</p>
-<pre><code>if (!e) e = window.event;
-</code></pre><p>}</p>
-<p>localStorage是持久化的本地存储，除非主动删除数据否则数据永远不会过期，受同源策略的限制</p>
-<p>应用场景：</p>
-<p>可以用来存储浏览器对该页面的访问次数，当前，如果换个浏览器这个次数就要重新开始计数了，还可以用来存储一些固定不变的页面信息，这样就不需要每次都重新加载了，这个值也可以进行覆盖</p>
-<p>sessionStorage<br>方法同localStorage</p>
-<p>用于本地存储一个会话中的数据，这些数据只有在同一个会话的页面才能访问并且当前会话结束后数据也随之销毁，因此sessionStorage不是一种持久化的本地存储，仅仅是一种会话级别的存储，只要这个浏览器窗口没有关闭，即使刷新页面或者进入同源另一页面，数据仍然存在，关闭窗口后，sessionStorage即被销毁</p>
-<p>应用场景： 页面之间的传值，从A页面跳转到B页面sessionStorage不会销毁</p>
-
+        <h5 id="Iterator-遍历器-的概念"><a href="#Iterator-遍历器-的概念" class="headerlink" title="Iterator(遍历器)的概念"></a>Iterator(遍历器)的概念</h5>
       
     </div>
     
@@ -455,7 +398,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
           
         </div>
       
@@ -468,8 +411,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/25/javascript中的对象属性/" rel="next" title="javscript中的对象属性">
-                <i class="fa fa-chevron-left"></i> javscript中的对象属性
+              <a href="/2018/07/13/Generator/" rel="next" title="Generator">
+                <i class="fa fa-chevron-left"></i> Generator
               </a>
             
           </div>
@@ -478,8 +421,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/06/变量，作用域，内存问题/" rel="prev" title="基本数据类型和引用数据类型的复制变量值问题">
-                基本数据类型和引用数据类型的复制变量值问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/16/async函数/" rel="prev" title="async函数">
+                async函数 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -532,8 +475,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -607,6 +559,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#Iterator-遍历器-的概念"><span class="nav-number">1.</span> <span class="nav-text">Iterator(遍历器)的概念</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
